@@ -1,6 +1,8 @@
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from src.config import settings
-from .models import BaseModel
+from .models import BaseModel, User
+from fastapi import Depends
+from fastapi_users.db import SQLAlchemyUserDatabase 
 
 # -------------------------------------------------------------------------------
 #  CREATION ENGINE AND SESSION
@@ -25,5 +27,9 @@ async_session_maker = async_sessionmaker(engine, expire_on_commit=False)  # Crea
 async def get_async_session():
     async with async_session_maker() as session:
         yield session
+
+
+async def get_user_db(session: AsyncSession = Depends(get_async_session)):
+    yield SQLAlchemyUserDatabase(session=session, user_table=User)
 
 # ----------------------------------------------------------------------------------
