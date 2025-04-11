@@ -2,7 +2,7 @@ from fastapi_users.authentication import BearerTransport, AuthenticationBackend
 from .db import get_database_stategy, get_user_db
 from .db.models import User
 from fastapi_users import BaseUserManager, IntegerIDMixin
-from config import settings
+from src.config import settings
 from fastapi import Depends, Request
 from typing import Optional
 from fastapi_users import FastAPIUsers
