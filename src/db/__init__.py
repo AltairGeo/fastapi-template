@@ -14,11 +14,10 @@ try:
         pool_pre_ping=True
     )
 except Exception as e:
-    print(e)
     try:
         engine = create_async_engine(settings.db_url)
     except Exception as e:
-        print(e)
+        print(str(e))
 
 
 async_session_maker = async_sessionmaker(engine, expire_on_commit=False)  # Create session maker
