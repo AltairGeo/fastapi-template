@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import List
 
 class MailSettings(BaseSettings):
     MAIL_USERNAME: str
@@ -20,6 +21,7 @@ class Settings(MailSettings, BaseSettings):
     token_lifetime: int = 3600 
     app_secret_reset_password: str
     app_secret_verify: str
+    cors_origins: List[str] = ["*"]
 
     model_config = SettingsConfigDict(env_file=".env")
 

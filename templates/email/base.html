@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FastAPI Template{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .base-cont {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+    {% block style %} {% endblock %}
+</head>
+<body>
+    <div class="base-cont">
+        <h1>{% block form_title %} {% endblock %}</h1>
+        <div>
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+    {% block script %} {% endblock %}
+</body>
+</html>

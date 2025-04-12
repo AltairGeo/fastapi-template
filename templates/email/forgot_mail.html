@@ -1,0 +1,20 @@
+{% extends "email/base.html" %}
+
+{% block title %}Reset password!{% endblock %}
+
+{% block form_title %} Password Reset Request {% endblock %}
+
+{% block content %} 
+    <p>You requested a password reset. Please click the button below to reset your password:</p>
+
+    <a href="{{ reset_url }}" 
+    style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; margin: 15px 0;">
+        Reset Password
+    </a>
+
+    <p>If you didn't request this, please ignore this email.</p>
+    <p style="color: #777; font-size: 0.9em; margin-top: 20px;">
+        This link will expire in 1 hour. For security reasons, please do not share this email with anyone.
+    </p>
+
+{% endblock %}

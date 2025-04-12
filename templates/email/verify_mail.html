@@ -1,0 +1,18 @@
+{% extends "email/base.html" %}
+
+{% block title %}Email Verification{% endblock %}
+
+{% block form_title %}Verify Your Email{% endblock %}
+
+{% block content %}
+    <p>Thank you for registering! Please verify your email address by clicking the button below:</p>
+    
+    <a href="{{ verify_url }}" 
+       style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; margin: 15px 0;">
+        Verify Email
+    </a>
+    
+    <p style="color: #777; font-size: 0.9em; margin-top: 20px;">
+        If you didn't create an account, please ignore this email.
+    </p>
+{% endblock %}
