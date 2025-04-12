@@ -13,5 +13,5 @@ conf = ConnectionConfig(
     MAIL_SSL_TLS = settings.MAIL_SSL_TLS,
     USE_CREDENTIALS = settings.USE_CREDENTIALS,
     VALIDATE_CERTS = settings.VALIDATE_CERTS,
-    TEMPLATE_FOLDER = templates_path
+    TEMPLATE_FOLDER = str(templates_path) + "/"
 )

@@ -1,6 +1,7 @@
 from logging.config import fileConfig
 from alembic import context
-from src.core.db import BaseModel, engine
+from src.db.models import BaseModel
+from src.db import engine
 from src.config import settings
 import asyncio
 
