@@ -1,15 +1,13 @@
-from fastapi_users.authentication import BearerTransport, AuthenticationBackend
-from .db import get_database_stategy, get_user_db
-from .db.models import User
+from fastapi_users.authentication import AuthenticationBackend
+from .depends import get_database_stategy, get_user_db
+from .models import User
 from fastapi_users import BaseUserManager, IntegerIDMixin
 from src.config import settings
 from fastapi import Depends, Request
 from typing import Optional
-from fastapi_users import FastAPIUsers
+from .transport import bearer_transport
 
 
-
-bearer_transport = BearerTransport(tokenUrl="auth/login")
 
 auth_backend = AuthenticationBackend(
     name="db_auth",
@@ -37,11 +35,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
 
 
 
+
+
 async def get_user_manager(user_db=Depends(get_user_db)):
     yield UserManager(user_db)
-
-
-fastapi_users = FastAPIUsers[User, int](
-    get_user_manager,
-    [auth_backend]
-)

@@ -1,5 +1,6 @@
-from src.core.auth import fastapi_users, auth_backend
-from src.core.db.schemas import UserRead, UserCreate, UserUpdate
+from src.users.manager import auth_backend
+from src.users import fastapi_users
+from src.users.schemas import UserRead, UserCreate, UserUpdate
 from fastapi import APIRouter
 
 
