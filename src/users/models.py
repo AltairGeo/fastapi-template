@@ -3,7 +3,7 @@ from fastapi_users.db import SQLAlchemyBaseUserTable
 from fastapi_users_db_sqlalchemy.access_token import SQLAlchemyBaseAccessTokenTable
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import declared_attr
-
+    
 
 
 

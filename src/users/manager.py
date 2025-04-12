@@ -6,6 +6,9 @@ from src.config import settings
 from fastapi import Depends, Request
 from typing import Optional
 from .transport import bearer_transport
+from src.utils.email import get_fast_mail
+from typing import Optional
+from fastapi_mail import FastMail, MessageSchema, MessageType
 
 
 
@@ -23,10 +26,20 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
     async def on_after_register(self, user: User, request: Optional[Request] = None):
         print(f"User {user.id} has registered.")
 
+
     async def on_after_forgot_password(
-        self, user: User, token: str, request: Optional[Request] = None
+        self, user: User, token: str, request: Optional[Request] = None, fast_mail: FastMail = Depends(get_fast_mail)
     ):
         print(f"User {user.id} has forgot their password. Reset token: {token}")
+
+        message = MessageSchema(
+                recipients=[user.email], 
+                template_body={"token": token}, 
+                subtype=MessageType.html
+            )
+
+        await fast_mail.send_message(message, template_name="forgot.html")
+
 
     async def on_after_request_verify(
         self, user: User, token: str, request: Optional[Request] = None
